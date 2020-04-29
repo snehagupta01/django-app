@@ -3,6 +3,10 @@
     <title></title>
 </head>
 <body>
-    <h1> Blog home !!!!!!</h1>
+    {% for post in posts %}
+    <h1>{{ post.title }} on {{ post.date_posted}}</h1>
+    <h2>By {{ post.author }}</h2>
+    <h3>{{ post.content }}</h3>
+    {% endfor %}
 </body>
 <html>
