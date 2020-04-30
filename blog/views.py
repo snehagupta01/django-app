@@ -40,7 +40,15 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
-    
+
+class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+    model = Post   
+    success_url='/'
+    def test_func(self):
+        post=self.get_object()
+        if self.request.user==post.author:
+            return True
+        return False
 
 class PostCreateView(LoginRequiredMixin,CreateView):
     model = Post
